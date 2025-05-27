@@ -15,6 +15,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import model.dao.UsuarioDAO;
 import model.dto.UsuarioDTO;
 import util.DialogUtil;
+import validator.usuarioValidator;
 
 public class FXMLDocumentController implements Initializable {
     /*
@@ -31,6 +32,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TableColumn<UsuarioDTO, String> colNome, colLogin, colEmail, colSenha;
     private DialogUtil mensagem = new DialogUtil();
+    private final usuarioValidator usuarioValidator = new usuarioValidator();
     /*
         Realiza o cadastro do usuário pegando as informações das labels 
         e chama a função cadastrar (model.dao/UsuarioDAO)
@@ -41,7 +43,9 @@ public class FXMLDocumentController implements Initializable {
         String login = txtLogin.getText();
         String email = txtEmail.getText();
         String senha = txtSenha.getText();
-
+        if(!usuarioValidator.validarUsuario(nome, email, senha, login)){
+            return;
+        }
         UsuarioDTO objusuariodto = new UsuarioDTO();
         objusuariodto.setNome(nome);
         objusuariodto.setLogin(login);
@@ -50,7 +54,7 @@ public class FXMLDocumentController implements Initializable {
 
         UsuarioDAO objusuariodao = new UsuarioDAO();
         objusuariodao.cadastrarUsuario(objusuariodto);
-
+     
         carregarUsuarios();
         limparCampos();
     }
@@ -94,7 +98,7 @@ public class FXMLDocumentController implements Initializable {
     private void deletarUsuario(ActionEvent event) {
         UsuarioDTO usuario = (UsuarioDTO) tblUsers.getSelectionModel().getSelectedItem();
         if (usuario != null) {
-            if(mensagem.showConfirmation("Confirmar", "Voce deseja deletar esse usuario?")){
+            if(mensagem.showConfirmation("Confirmar", "Voce deseja deletar esse usuário?")){
                 UsuarioDAO usuarioDAO = new UsuarioDAO();
                 usuarioDAO.deletarUsuario(usuario);
                 carregarUsuarios();

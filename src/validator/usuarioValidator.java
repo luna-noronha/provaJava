@@ -2,6 +2,7 @@ package validator;
 
 import java.util.ArrayList;
 import java.util.List;
+import static util.DialogUtil.showAlert;
 
 public class usuarioValidator {
 
@@ -32,7 +33,7 @@ public class usuarioValidator {
 
     private void showWarning(String mensagem) {
         // Simulação do seu método showWarning
-        System.out.println("Aviso: " + mensagem);
+        showAlert("ERROR","" + mensagem);
         // Na sua aplicação JavaFX, você usaria DialogUtil.showWarning(mensagem);
     }
 }
