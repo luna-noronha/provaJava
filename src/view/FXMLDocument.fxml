@@ -11,7 +11,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="694.0" prefWidth="750.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="694.0" prefWidth="750.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/24.0.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FXMLDocumentController">
    <children>
       <TextField fx:id="txtNome" layoutX="224.0" layoutY="75.0" prefHeight="30.0" prefWidth="324.0" promptText="Digite o nome">
          <font>

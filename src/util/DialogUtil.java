@@ -27,6 +27,6 @@ public class DialogUtil {
         alert.setContentText(message);
 
         Optional<ButtonType> result = alert.showAndWait();
-        return result.isPresent() && (result.get() == ButtonType.OK || result.get() == ButtonType.CANCEL);
+        return result.isPresent() && (result.get() == ButtonType.OK || result.get() != ButtonType.CANCEL);
     }
 }

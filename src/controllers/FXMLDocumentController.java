@@ -15,8 +15,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import model.dao.UsuarioDAO;
 import model.dto.UsuarioDTO;
 import util.DialogUtil;
-import validator.usuarioValidator;
-
+import validator.IUsuarioValidator;
+// FXMLDocumentController (Módulo de Alto Nível) depende de Abstração
 public class FXMLDocumentController implements Initializable {
     /*
         Variáveis utulizadas nas aplicações
@@ -32,11 +32,15 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TableColumn<UsuarioDTO, String> colNome, colLogin, colEmail, colSenha;
     private DialogUtil mensagem = new DialogUtil();
-    private final usuarioValidator usuarioValidator = new usuarioValidator();
+    private final IUsuarioValidator usuarioValidator;
     /*
         Realiza o cadastro do usuário pegando as informações das labels 
         e chama a função cadastrar (model.dao/UsuarioDAO)
     */
+    // Injeção de dependência via construtor
+    public FXMLDocumentController(IUsuarioValidator usuarioValidator){
+        this.usuarioValidator = usuarioValidator;
+    }
     @FXML
     private void cadastrarUsuario(ActionEvent event) {
         String nome = txtNome.getText();
@@ -78,11 +82,18 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void atualizarUsuario(ActionEvent event) {
         UsuarioDTO usuario = (UsuarioDTO) tblUsers.getSelectionModel().getSelectedItem();
+        String nome = txtNome.getText();
+        String login = txtLogin.getText();
+        String email = txtEmail.getText();
+        String senha = txtSenha.getText();
+        if(!usuarioValidator.validarUsuario(nome, email, senha, login)){
+            return;
+        }
         if (usuario != null) {
-            usuario.setNome(txtNome.getText());
-            usuario.setLogin(txtLogin.getText());
-            usuario.setEmail(txtEmail.getText());
-            usuario.setSenha(txtSenha.getText());
+            usuario.setNome(nome);
+            usuario.setLogin(login);
+            usuario.setEmail(email);
+            usuario.setSenha(senha);
             
             UsuarioDAO usuarioDAO = new UsuarioDAO();
             usuarioDAO.atualizarUsuario(usuario);
