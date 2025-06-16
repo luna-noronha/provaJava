@@ -14,9 +14,6 @@ import javafx.collections.ObservableList;
 
 public class UsuarioDAO implements IUsuarioDAO {
 
-    Connection c;
-    PreparedStatement ps;
-    ResultSet rs;
     ArrayList<UsuarioDTO> lista = new ArrayList<>();
 
     public ObservableList<UsuarioDTO> listarUsuarios() {
@@ -47,10 +44,8 @@ public class UsuarioDAO implements IUsuarioDAO {
      */
     public void cadastrarUsuario(UsuarioDTO usuario) {
         String sql = "INSERT INTO usuario (nome, email, senha, login) VALUES (?, ?, ?, ?)";
-        ps = null;
-        c = new Conexao().getConnection();
-        try {
-            ps = c.prepareStatement(sql);
+        try (Connection c = new Conexao().getConnection();
+             PreparedStatement ps = c.prepareStatement(sql);) {
             ps.setString(1, usuario.getNome());
             ps.setString(2, usuario.getEmail());
             ps.setString(3, usuario.getSenha());
@@ -59,7 +54,8 @@ public class UsuarioDAO implements IUsuarioDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            try {
+            try (Connection c = new Conexao().getConnection();
+             PreparedStatement ps = c.prepareStatement(sql);) {
                 if (ps != null) {
                     ps.close();
                 }
@@ -76,20 +72,19 @@ public class UsuarioDAO implements IUsuarioDAO {
      * Realiza a seleção de todos os usuarios, analogo ao modo de cadastro.
      */
     public void selecionarUsuario() {
-        rs = null;
-        ps = null;
-        c = new Conexao().getConnection();
-        try {
-            ps = c.prepareStatement("select * from usuario");
-            rs = ps.executeQuery();
-
+        String sql = "select * from usuario";
+        try (Connection c = new Conexao().getConnection();
+             PreparedStatement ps = c.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
                 System.out.println("#" + rs.getInt("id") + " # " + rs.getString("nome"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            try {
+            try (Connection c = new Conexao().getConnection();
+             PreparedStatement ps = c.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
                 if (rs != null) {
                     rs.close();
                 }
@@ -110,11 +105,8 @@ public class UsuarioDAO implements IUsuarioDAO {
      */
     public void atualizarUsuario(UsuarioDTO usuario) {
         String sql = "UPDATE usuario SET nome = ?, email = ?, senha = ?, login = ? WHERE id = ?";
-        ps = null;
-        c = new Conexao().getConnection();
-
-        try {
-            ps = c.prepareStatement(sql);
+        try (Connection c = new Conexao().getConnection();
+             PreparedStatement ps = c.prepareStatement(sql);){
             ps.setString(1, usuario.getNome());
             ps.setString(2, usuario.getEmail());
             ps.setString(3, usuario.getSenha());
@@ -124,7 +116,8 @@ public class UsuarioDAO implements IUsuarioDAO {
         } catch (SQLException e) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
         } finally {
-            try {
+            try (Connection c = new Conexao().getConnection();
+             PreparedStatement ps = c.prepareStatement(sql);){
                 if (ps != null) {
                     ps.close();
                 }
@@ -142,15 +135,13 @@ public class UsuarioDAO implements IUsuarioDAO {
      */
     public UsuarioDTO buscarUsuarioPorLogin(String login) {
         String sql = "SELECT * FROM usuario WHERE email = ?";
-        rs = null;
-        ps = null;
-        c = new Conexao().getConnection();
+       
         UsuarioDTO usuario = null; // Inicializa a variável para armazenar o usuário
 
-        try {
-            ps = c.prepareStatement(sql);
+        try (Connection c = new Conexao().getConnection();
+             PreparedStatement ps = c.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()){
             ps.setString(1, login); // Define o email na consulta
-            rs = ps.executeQuery();
 
             // Verifica se o usuário foi encontrado
             if (rs.next()) {
@@ -164,7 +155,9 @@ public class UsuarioDAO implements IUsuarioDAO {
         } catch (SQLException e) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
         } finally {
-            try {
+            try (Connection c = new Conexao().getConnection();
+             PreparedStatement ps = c.prepareStatement("select * from usuario");
+             ResultSet rs = ps.executeQuery()) {
                 if (rs != null) {
                     rs.close();
                 }
@@ -187,17 +180,16 @@ public class UsuarioDAO implements IUsuarioDAO {
      */
     public void deletarUsuario(UsuarioDTO usuario) {
         String sql = "DELETE FROM usuario WHERE email = ?";
-        ps = null;
-        c = new Conexao().getConnection();
-
-        try {
-            ps = c.prepareStatement(sql);
+        try (Connection c = new Conexao().getConnection();
+             PreparedStatement ps = c.prepareStatement(sql);){
             ps.setString(1, usuario.getEmail()); // Usando o email do objeto DTO
             ps.executeUpdate();
         } catch (SQLException e) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
         } finally {
-            try {
+            try (Connection c = new Conexao().getConnection();
+             PreparedStatement ps = c.prepareStatement("select * from usuario");
+             ResultSet rs = ps.executeQuery()) {
                 if (ps != null) {
                     ps.close();
                 }

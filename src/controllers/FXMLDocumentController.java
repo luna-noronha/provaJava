@@ -50,14 +50,14 @@ public class FXMLDocumentController implements Initializable {
         if(!usuarioValidator.validarUsuario(nome, email, senha, login)){
             return;
         }
-        UsuarioDTO objusuariodto = new UsuarioDTO();
-        objusuariodto.setNome(nome);
-        objusuariodto.setLogin(login);
-        objusuariodto.setEmail(email);
-        objusuariodto.setSenha(senha);
+        UsuarioDTO objUsuarioDTO = new UsuarioDTO();
+        objUsuarioDTO.setNome(nome);
+        objUsuarioDTO.setLogin(login);
+        objUsuarioDTO.setEmail(email);
+        objUsuarioDTO.setSenha(senha);
 
-        UsuarioDAO objusuariodao = new UsuarioDAO();
-        objusuariodao.cadastrarUsuario(objusuariodto);
+        UsuarioDAO objUsuarioDAO = new UsuarioDAO();
+        objUsuarioDAO.cadastrarUsuario(objUsuarioDTO);
      
         carregarUsuarios();
         limparCampos();
@@ -68,12 +68,12 @@ public class FXMLDocumentController implements Initializable {
     */
     @FXML
     private void selecionarUsuario() {
-        UsuarioDTO usuario = (UsuarioDTO) tblUsers.getSelectionModel().getSelectedItem();
-        if (usuario != null) {
-            txtNome.setText(usuario.getNome());
-            txtLogin.setText(usuario.getLogin());
-            txtEmail.setText(usuario.getEmail());
-            txtSenha.setText(usuario.getSenha());
+        UsuarioDTO objUsuarioDTO = (UsuarioDTO) tblUsers.getSelectionModel().getSelectedItem();
+        if (objUsuarioDTO != null) {
+            txtNome.setText(objUsuarioDTO.getNome());
+            txtLogin.setText(objUsuarioDTO.getLogin());
+            txtEmail.setText(objUsuarioDTO.getEmail());
+            txtSenha.setText(objUsuarioDTO.getSenha());
         }
     }
     /*
@@ -81,7 +81,7 @@ public class FXMLDocumentController implements Initializable {
     */
     @FXML
     private void atualizarUsuario(ActionEvent event) {
-        UsuarioDTO usuario = (UsuarioDTO) tblUsers.getSelectionModel().getSelectedItem();
+        UsuarioDTO objUsuarioDTO = (UsuarioDTO) tblUsers.getSelectionModel().getSelectedItem();
         String nome = txtNome.getText();
         String login = txtLogin.getText();
         String email = txtEmail.getText();
@@ -89,14 +89,14 @@ public class FXMLDocumentController implements Initializable {
         if(!usuarioValidator.validarUsuario(nome, email, senha, login)){
             return;
         }
-        if (usuario != null) {
-            usuario.setNome(nome);
-            usuario.setLogin(login);
-            usuario.setEmail(email);
-            usuario.setSenha(senha);
+        if (objUsuarioDTO != null) {
+            objUsuarioDTO.setNome(nome);
+            objUsuarioDTO.setLogin(login);
+            objUsuarioDTO.setEmail(email);
+            objUsuarioDTO.setSenha(senha);
             
             UsuarioDAO usuarioDAO = new UsuarioDAO();
-            usuarioDAO.atualizarUsuario(usuario);
+            usuarioDAO.atualizarUsuario(objUsuarioDTO);
             carregarUsuarios();
             selecionarUsuario();
         }
@@ -107,11 +107,11 @@ public class FXMLDocumentController implements Initializable {
     */
     @FXML
     private void deletarUsuario(ActionEvent event) {
-        UsuarioDTO usuario = (UsuarioDTO) tblUsers.getSelectionModel().getSelectedItem();
-        if (usuario != null) {
+        UsuarioDTO objUsuarioDTO = (UsuarioDTO) tblUsers.getSelectionModel().getSelectedItem();
+        if (objUsuarioDTO != null) {
             if(mensagem.showConfirmation("Confirmar", "Voce deseja deletar esse usuário?")){
                 UsuarioDAO usuarioDAO = new UsuarioDAO();
-                usuarioDAO.deletarUsuario(usuario);
+                usuarioDAO.deletarUsuario(objUsuarioDTO);
                 carregarUsuarios();
                 selecionarUsuario();
             }

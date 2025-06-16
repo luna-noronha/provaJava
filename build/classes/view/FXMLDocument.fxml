@@ -2,130 +2,48 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="694.0" prefWidth="750.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/24.0.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="694.0" prefWidth="750.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FXMLDocumentController">
    <children>
       <TextField fx:id="txtNome" layoutX="224.0" layoutY="75.0" prefHeight="30.0" prefWidth="324.0" promptText="Digite o nome">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></TextField>
-      <Label fx:id="lblNome" layoutX="359.0" layoutY="47.0" prefWidth="49.0" text="Nome:">
+      <Label fx:id="lblNome" layoutX="359.0" layoutY="47.0" prefWidth="49.0" text="Nome:" textFill="WHITE">
          <font>
             <Font size="16.0" />
-         </font>
-         <textFill>
-            <LinearGradient endY="0.5497630331753555">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color red="1.0" green="1.0" blue="1.0" />
-                     </color>
-                  </Stop>
-               </stops>
-            </LinearGradient>
-         </textFill></Label>
-      <TextField fx:id="txtSenha" layoutX="224.0" layoutY="136.0" prefHeight="30.0" prefWidth="324.0" promptText="Digite a senha">
+         </font></Label>
+      <PasswordField fx:id="txtSenha" accessibleRole="PASSWORD_FIELD" layoutX="224.0" layoutY="136.0" prefHeight="30.0" prefWidth="324.0" promptText="Digite a senha">
          <font>
             <Font name="System Bold" size="14.0" />
-         </font></TextField>
-      <Label fx:id="lblSenha" layoutX="360.0" layoutY="106.0" text="Senha:">
+         </font></PasswordField>
+      <Label fx:id="lblSenha" layoutX="360.0" layoutY="106.0" text="Senha:" textFill="WHITE">
          <font>
             <Font size="16.0" />
-         </font>
-         <textFill>
-            <LinearGradient endY="0.5497630331753555">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color red="1.0" green="1.0" blue="1.0" />
-                     </color>
-                  </Stop>
-               </stops>
-            </LinearGradient>
-         </textFill></Label>
+         </font></Label>
       <TextField fx:id="txtEmail" layoutX="224.0" layoutY="200.0" prefHeight="30.0" prefWidth="324.0" promptText="Digite o email">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></TextField>
-      <Label fx:id="lblEmail" layoutX="362.0" layoutY="171.0" text="Email:">
+      <Label fx:id="lblEmail" layoutX="362.0" layoutY="171.0" text="Email:" textFill="WHITE">
          <font>
             <Font size="16.0" />
-         </font>
-         <textFill>
-            <LinearGradient endY="0.5497630331753555">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color red="1.0" green="1.0" blue="1.0" />
-                     </color>
-                  </Stop>
-               </stops>
-            </LinearGradient>
-         </textFill></Label>
+         </font></Label>
       <TextField fx:id="txtLogin" layoutX="224.0" layoutY="263.0" prefHeight="30.0" prefWidth="324.0" promptText="Digite o login">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></TextField>
-      <Label fx:id="lblLogin" layoutX="364.0" layoutY="232.0" text="Login:">
+      <Label fx:id="lblLogin" layoutX="364.0" layoutY="232.0" text="Login:" textFill="WHITE">
          <font>
             <Font size="16.0" />
-         </font>
-         <textFill>
-            <LinearGradient endY="0.5497630331753555">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color red="1.0" green="1.0" blue="1.0" />
-                     </color>
-                  </Stop>
-               </stops>
-            </LinearGradient>
-         </textFill></Label>
-      <Button fx:id="btnCadastrar" layoutX="170.0" layoutY="342.0" mnemonicParsing="false" onAction="#cadastrarUsuario" prefHeight="25.0" prefWidth="108.0" text="Cadastrar">
-         <textFill>
-            <LinearGradient endX="1.0" startX="0.7251184834123223" startY="0.6303317535545023">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color red="1.0" green="1.0" blue="1.0" />
-                     </color>
-                  </Stop>
-               </stops>
-            </LinearGradient>
-         </textFill></Button>
+         </font></Label>
+      <Button fx:id="btnCadastrar" layoutX="170.0" layoutY="342.0" mnemonicParsing="false" onAction="#cadastrarUsuario" prefHeight="25.0" prefWidth="108.0" text="Cadastrar" />
       <TableView fx:id="tblUsers" layoutX="17.0" layoutY="383.0" prefHeight="226.0" prefWidth="718.0">
         <columns>
           <TableColumn fx:id="colId" prefWidth="47.0" text="Id" />
@@ -135,74 +53,9 @@
             <TableColumn fx:id="colLogin" minWidth="0.0" prefWidth="160.0" text="Login" />
         </columns>
       </TableView>
-      <Button fx:id="btnUpdate" layoutX="224.0" layoutY="620.0" mnemonicParsing="false" onAction="#atualizarUsuario" prefHeight="25.0" prefWidth="108.0" text="Atualizar">
-         <textFill>
-            <LinearGradient endX="1.0" startX="0.7251184834123223" startY="0.6303317535545023">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color red="1.0" green="1.0" blue="1.0" />
-                     </color>
-                  </Stop>
-               </stops>
-            </LinearGradient>
-         </textFill></Button>
-      <Button fx:id="btnDelete" layoutX="440.0" layoutY="620.0" mnemonicParsing="false" onAction="#deletarUsuario" prefHeight="25.0" prefWidth="108.0" style="-fx-background-color: EE1010;" text="Excluir">
-         <textFill>
-            <LinearGradient endX="1.0" startX="0.7251184834123223" startY="0.6303317535545023">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color red="1.0" green="1.0" blue="1.0" />
-                     </color>
-                  </Stop>
-               </stops>
-            </LinearGradient>
-         </textFill></Button>
-      <Button fx:id="btnSelect" layoutX="338.0" layoutY="342.0" mnemonicParsing="false" onAction="#selecionarUsuario" prefHeight="25.0" prefWidth="108.0" text="Selecionar">
-         <textFill>
-            <LinearGradient endX="1.0" startX="0.7251184834123223" startY="0.6303317535545023">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color red="1.0" green="1.0" blue="1.0" />
-                     </color>
-                  </Stop>
-               </stops>
-            </LinearGradient>
-         </textFill></Button>
-      <Button fx:id="btnLimpar" layoutX="494.0" layoutY="342.0" mnemonicParsing="false" onAction="#limparCampos" prefHeight="25.0" prefWidth="108.0" text="Limpar">
-         <textFill>
-            <LinearGradient endX="1.0" startX="0.7251184834123223" startY="0.6303317535545023">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color red="1.0" green="1.0" blue="1.0" />
-                     </color>
-                  </Stop>
-               </stops>
-            </LinearGradient>
-         </textFill>
-      </Button>
+      <Button fx:id="btnUpdate" layoutX="224.0" layoutY="620.0" mnemonicParsing="false" onAction="#atualizarUsuario" prefHeight="25.0" prefWidth="108.0" text="Atualizar" />
+      <Button fx:id="btnDelete" layoutX="440.0" layoutY="620.0" mnemonicParsing="false" onAction="#deletarUsuario" prefHeight="25.0" prefWidth="108.0" style="-fx-background-color: EE1010;" text="Excluir" />
+      <Button fx:id="btnSelect" layoutX="338.0" layoutY="342.0" mnemonicParsing="false" onAction="#selecionarUsuario" prefHeight="25.0" prefWidth="108.0" text="Selecionar" />
+      <Button fx:id="btnLimpar" layoutX="494.0" layoutY="342.0" mnemonicParsing="false" onAction="#limparCampos" prefHeight="25.0" prefWidth="108.0" text="Limpar" />
    </children>
 </AnchorPane>
